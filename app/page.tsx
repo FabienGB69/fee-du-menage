@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BrandShowcase } from '@/components/BrandShowcase';
+import { Award, BadgePercent, FileCheck, MapPin, Star, ThumbsUp } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import { TrustSection } from '@/components/TrustSection';
 import { DjamilaPresentation } from '@/components/DjamilaPresentation';
+import { ProcessSteps } from '@/components/ProcessSteps';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
@@ -18,7 +22,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    image: 'https://fee-du-menage.fr/assets/logo-fee-du-menage.svg',
+    image: 'https://fee-du-menage.fr/images/logo-fee-du-menage-transparent.png',
     telephone: '+33609896564',
     email: siteConfig.email,
     address: {
@@ -51,9 +55,9 @@ export default function HomePage() {
             Ménage régulier, grand nettoyage, vitres, déménagement et locations Airbnb. Intervention à Lyon dans un rayon de 8 km.
           </p>
           <div className="badges" aria-label="Points forts">
-            <span>106 avis clients vérifiés</span>
-            <span>Note 5/5</span>
-            <span>Crédit d’impôt 50 %</span>
+            <Badge variant="secondary"><Star className="w-4 h-4 mr-1" aria-hidden="true" />106 avis clients vérifiés</Badge>
+            <Badge variant="secondary"><Award className="w-4 h-4 mr-1" aria-hidden="true" />Note 5/5</Badge>
+            <Badge variant="secondary"><BadgePercent className="w-4 h-4 mr-1" aria-hidden="true" />Crédit d’impôt 50 %</Badge>
           </div>
           <div className="hero-actions">
             <a className="btn btn-primary" href={siteConfig.phoneHref}>
@@ -97,9 +101,14 @@ export default function HomePage() {
         </aside>
       </section>
 
-      <BrandShowcase />
+      <TrustSection />
 
       <DjamilaPresentation />
+
+      <section className="process section-shell" id="comment-ca-marche" aria-label="Comment ça marche">
+        <SectionHeading eyebrow="Comment ça marche" title="Un service simple, en 4 étapes" centered />
+        <ProcessSteps />
+      </section>
 
       <section className="ambiance section-shell" aria-label="Résultat d'une prestation de ménage à domicile">
         <div className="ambiance-inner">
@@ -166,26 +175,32 @@ export default function HomePage() {
         <SectionHeading eyebrow="Pourquoi choisir Fée du Ménage ?" title="Une aide ménagère fiable, locale et reconnue à Lyon" />
         <div className="why-list">
           <div>
+            <Star className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>Travail soigné et méticuleux</strong>
             <span>Chaque intervention vise un résultat propre, net et durable.</span>
           </div>
           <div>
+            <ThumbsUp className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>106 avis clients</strong>
             <span>Une preuve sociale solide grâce aux retours de clients Wecasa.</span>
           </div>
           <div>
+            <Award className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>Note 5/5</strong>
             <span>Une qualité de service appréciée et régulièrement recommandée.</span>
           </div>
           <div>
+            <FileCheck className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>Devis gratuit</strong>
             <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
+            <BadgePercent className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>Service à la Personne</strong>
             <span>Des prestations à domicile pouvant être éligibles à l’avantage fiscal.</span>
           </div>
           <div>
+            <MapPin className="w-6 h-6 text-violet-600" aria-hidden="true" />
             <strong>Intervention locale à Lyon</strong>
             <span>Un service de proximité autour de Lyon 9.</span>
           </div>
@@ -225,26 +240,38 @@ function FaqSection() {
     <section className="faq section-shell" id="faq">
       <SectionHeading eyebrow="Questions fréquentes" title="FAQ" centered />
       <div className="faq-list">
-        <details>
-          <summary>Intervenez-vous dans toute la métropole de Lyon ?</summary>
-          <p>Non, uniquement Lyon et rayon de 8 km.</p>
-        </details>
-        <details>
-          <summary>Puis-je bénéficier du crédit d’impôt ?</summary>
-          <p>Oui, dans le cadre des prestations éligibles au Service à la Personne.</p>
-        </details>
-        <details>
-          <summary>Le devis est-il gratuit ?</summary>
-          <p>Oui.</p>
-        </details>
-        <details>
-          <summary>Faites-vous les vitres ?</summary>
-          <p>Oui.</p>
-        </details>
-        <details>
-          <summary>Faites-vous les locations Airbnb ?</summary>
-          <p>Oui.</p>
-        </details>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="zone">
+            <AccordionTrigger>Intervenez-vous dans toute la métropole de Lyon ?</AccordionTrigger>
+            <AccordionContent>
+              Non, Fée du Ménage intervient uniquement à Lyon et dans un rayon de 8 km autour du 69009. Cette proximité nous permet de garantir un service réactif et de qualité. N’hésitez pas à nous contacter pour vérifier si votre adresse est dans notre zone.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="credit-impot">
+            <AccordionTrigger>Puis-je bénéficier du crédit d’impôt ?</AccordionTrigger>
+            <AccordionContent>
+              Oui, dans le cadre des prestations éligibles au Service à la Personne, vous pouvez bénéficier d’un crédit d’impôt de 50 % sur le montant des prestations. Cela réduit concrètement le coût réel de votre ménage à domicile. Les détails vous seront précisés lors du devis.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="devis">
+            <AccordionTrigger>Le devis est-il gratuit ?</AccordionTrigger>
+            <AccordionContent>
+              Oui, le devis est totalement gratuit et sans engagement. Vous recevez une estimation claire du tarif avant toute intervention. Il suffit de nous contacter par téléphone, email ou via le formulaire en ligne.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="vitres">
+            <AccordionTrigger>Faites-vous les vitres ?</AccordionTrigger>
+            <AccordionContent>
+              Oui, le nettoyage de vitres fait partie de nos prestations à domicile. Cette prestation peut être incluse dans un ménage régulier ou effectuée de façon ponctuelle selon vos besoins. Précisez-le lors de votre demande de devis.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="airbnb">
+            <AccordionTrigger>Faites-vous les locations Airbnb ?</AccordionTrigger>
+            <AccordionContent>
+              Oui, nous proposons un service de ménage adapté aux locations courte durée de type Airbnb. Nous intervenons entre deux séjours pour remettre le logement en état rapidement et soigneusement. Contactez-nous pour un devis spécifique à votre location.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );

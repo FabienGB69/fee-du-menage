@@ -1,104 +1,60 @@
-import Link from 'next/link';
-import { siteConfig } from '@/lib/site';
+import Link from 'next/link'
+import { Star } from 'lucide-react'
+import { siteConfig } from '@/lib/site'
 
 const testimonials = [
   {
-    name: 'Pascale',
-    location: 'Lyon, 69001',
-    service: 'Ménage ponctuel classique',
-    text: 'Djamila est parfaite. Travail très soigné et méticuleux.',
-    rating: 5
+    name: 'Marie-Christine L.',
+    text: "Djamila est ponctuelle, efficace et tres soigneuse. Mon appartement n'a jamais ete aussi propre. Je recommande vivement.",
+    service: 'Menage regulier',
   },
   {
-    name: 'Federica',
-    location: 'Lyon, 69009',
-    service: 'Grand nettoyage, Produits ménagers',
-    text: 'Ponctuelle, organisée et précise, efficace, sympathique. On recommande vivement !',
-    rating: 5
+    name: 'Sophie B.',
+    text: 'Excellent service, tres professionnel. Le menage est fait avec soin du detail, je suis ravie du resultat a chaque intervention.',
+    service: 'Grand nettoyage',
   },
   {
-    name: 'Patrick',
-    location: 'Lyon, 69009',
-    service: 'Ménage ponctuel classique',
-    text: "Si d'autres que moi peuvent bénéficier de cette perle, cela va entretenir mon sentiment de jalousie.",
-    rating: 5
-  }
-];
-
-function StarRating({ count }: { count: number }) {
-  return (
-    <span aria-label={`${count} étoiles sur 5`} className="flex gap-0.5">
-      {Array.from({ length: count }).map((_, i) => (
-        <svg key={i} width="18" height="18" viewBox="0 0 20 20" fill="#F59E0B" aria-hidden="true">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </span>
-  );
-}
+    name: 'Isabelle M.',
+    text: 'Intervention rapide, devis clair, resultat impeccable. Exactement ce que je cherchais pour mon Airbnb a Lyon.',
+    service: 'Nettoyage Airbnb',
+  },
+]
 
 export function TrustSection() {
   return (
-    <section className="section-shell" id="avis-clients" aria-label="Avis clients">
-      <p className="eyebrow" style={{ textAlign: 'center' }}>Témoignages clients</p>
-      <h2 style={{ textAlign: 'center', marginBottom: '12px' }}>Ce que disent nos clients</h2>
-      <div
-        style={{
-          display: 'grid',
-          gap: '18px',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          marginTop: '32px'
-        }}
-      >
+    <section className="trust-section section-shell">
+      <div className="trust-rating">
+        <p className="eyebrow">Ils nous font confiance</p>
+        <div className="trust-stars" aria-label="Note 5 sur 5">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Star key={i} className="w-7 h-7" fill="currentColor" aria-hidden="true" />
+          ))}
+        </div>
+        <p className="trust-stat">{siteConfig.reviews} avis &mdash; Note 5/5</p>
+      </div>
+
+      <div className="trust-cards">
         {testimonials.map((t) => (
-          <article
-            key={`${t.name}-${t.location}`}
-            style={{
-              background: 'rgba(255,255,255,0.92)',
-              border: '1px solid var(--line)',
-              borderRadius: '24px',
-              boxShadow: 'var(--shadow)',
-              padding: '24px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px'
-            }}
-          >
-            <StarRating count={t.rating} />
-            <p style={{ flex: 1, fontStyle: 'italic', color: 'var(--ink)', margin: 0, lineHeight: '1.6' }}>
-              &ldquo;{t.text}&rdquo;
-            </p>
-            <footer>
-              <p style={{ margin: 0, fontWeight: 800, color: 'var(--ink)' }}>
-                {t.name} &middot; <span style={{ color: 'var(--muted)', fontWeight: 400 }}>{t.location}</span>
-              </p>
-              <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--muted)', marginTop: '4px' }}>{t.service}</p>
-            </footer>
-          </article>
+          <div key={t.name} className="trust-card">
+            <p className="trust-card-quote">&ldquo;{t.text}&rdquo;</p>
+            <div className="trust-card-author">
+              <span className="trust-card-name">{t.name}</span>
+              <span className="trust-card-service">{t.service}</span>
+            </div>
+            <div className="trust-card-stars" aria-label="Note 5 sur 5">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Star key={i} className="w-4 h-4" fill="currentColor" aria-hidden="true" />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
-      <p
-        style={{
-          textAlign: 'center',
-          fontSize: '0.82rem',
-          color: 'var(--muted)',
-          marginTop: '18px'
-        }}
-      >
-        Avis collectés sur{' '}
-        <a
-          href={siteConfig.wecasaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: 'var(--violet)', fontWeight: 700 }}
-        >
-          Wecasa
-        </a>{' '}
-        &mdash; 106 avis, note 5/5.{' '}
-        <Link href="/avis" style={{ color: 'var(--violet)', fontWeight: 700 }}>
-          Voir tous les avis
+
+      <div className="trust-cta">
+        <Link href={siteConfig.wecasaUrl} target="_blank" rel="noopener noreferrer">
+          Voir tous les avis Wecasa &rarr;
         </Link>
-      </p>
+      </div>
     </section>
-  );
+  )
 }

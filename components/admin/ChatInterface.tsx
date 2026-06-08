@@ -64,6 +64,7 @@ export default function ChatInterface() {
   const [newMemoryTags, setNewMemoryTags] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const abortRef = useRef<AbortController | null>(null)
 
   // Hydrate from localStorage
   useEffect(() => {
@@ -150,6 +151,9 @@ export default function ChatInterface() {
     return full
   }, [session.agent, session.activeSkills, session.model])
 
+  // Cancel any in-flight stream when the component unmounts
+  useEffect(() => () => { abortRef.current?.abort() }, [])
+
   // ── Stream a message with live token display ──────────────────────────────
   async function sendMessage(text: string) {
     const userMsg: ChatMessage = { role: 'user', content: text }
@@ -172,11 +176,16 @@ export default function ChatInterface() {
     const systemParts = [agent?.systemPrompt, skillPrompt].filter(Boolean)
     const systemPrompt = systemParts.join('\n\n') || undefined
 
+    abortRef.current?.abort()
+    const abort = new AbortController()
+    abortRef.current = abort
+
     try {
       const res = await fetch('/api/admin/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages, model: session.model, systemPrompt }),
+        signal: abort.signal,
       })
 
       if (!res.ok) {
@@ -210,7 +219,10 @@ export default function ChatInterface() {
                 },
               }))
             }
-          } catch { /* ignore */ }
+            if (sentinel.__error) throw new Error(sentinel.__error as string)
+          } catch (sentinelErr) {
+            if (sentinelErr instanceof SyntaxError) { /* ignore bad JSON */ } else { throw sentinelErr }
+          }
         } else {
           assistantText += buffer
           buffer = ''
