@@ -24,6 +24,7 @@ export async function POST(request: Request) {
       ok: true,
       supabase,
       email,
+      message: email.sent ? 'Demande envoyée à Djamila par email.' : 'Demande reçue.'
       message: email.configured
         ? 'Demande envoyée à Djamila.'
         : 'Demande reçue. Configurez RESEND_API_KEY pour activer l’email automatique.'

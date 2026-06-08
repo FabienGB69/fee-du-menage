@@ -2,6 +2,19 @@ export const siteConfig = {
   name: 'Fée du Ménage',
   phoneDisplay: '+33 6 09 89 65 64',
   phoneHref: 'tel:+33609896564',
+  email: 'prestation.menage69@gmail.com',
+  address: '55 rue du Bourdonnais, 69009 Lyon',
+  area: 'Lyon uniquement, rayon 8 km',
+  wecasaUrl: 'https://www.wecasa.fr/menage/lyon/djamila',
+  reviews: 106,
+  rating: '5/5',
+  quoteRecipientName: 'Djamila',
+  whatsappMessage: 'Bonjour, je souhaite obtenir un devis pour une prestation de ménage à Lyon.',
+  domain: 'https://fee-du-menage.fr'
+};
+
+export const whatsappHref = `https://wa.me/33609896564?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
+
   email: 'djemila.hamitouche@gmail.com',
   address: '55 rue du Bourdonnais, 69009 Lyon',
   area: 'Lyon uniquement, rayon de 8 km autour de Lyon 9',

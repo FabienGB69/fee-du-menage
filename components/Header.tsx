@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
+import { Button } from '@/components/ui/button';
 
 const navItems = [
   { href: '/services', label: 'Services' },
@@ -23,6 +24,14 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+        </div>
+        <div className="nav-actions">
+          <a className="nav-call" href={siteConfig.phoneHref} aria-label="Appeler Fée du Ménage">
+            06 09 89 65 64
+          </a>
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <Link href="/contact#devis">Devis gratuit</Link>
+          </Button>
         </div>
         <a className="nav-call" href={siteConfig.phoneHref} aria-label="Appeler Fée du Ménage">
           06 09 89 65 64

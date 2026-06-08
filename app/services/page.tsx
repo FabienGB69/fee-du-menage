@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
+import { excludedServices, siteConfig, whatsappHref } from '@/lib/site';
 import { excludedServices, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function ServicesPage() {
         <div className="hero-actions">
           <a className="btn btn-primary" href={siteConfig.phoneHref}>Appeler maintenant</a>
           <Link className="btn btn-secondary" href="/contact#devis">Demander un devis gratuit</Link>
+          <a className="btn btn-whatsapp" href={whatsappHref} target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </section>
       <section className="section-shell">

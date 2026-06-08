@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
+import { siteConfig, whatsappHref } from '@/lib/site';
 import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -59,6 +60,9 @@ export default function HomePage() {
             <Link className="btn btn-secondary" href="/contact#devis">
               Demander un devis gratuit
             </Link>
+            <a className="btn btn-whatsapp" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
           </div>
         </div>
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
@@ -133,6 +137,7 @@ export default function HomePage() {
           </div>
           <div>
             <strong>Devis gratuit</strong>
+            <span>Vous validez les conditions avant de confirmer l’intervention.</span>
             <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
