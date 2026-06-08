@@ -915,3 +915,11 @@ a:focus-visible {
 .trust-cta a { color: var(--violet); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .trust-cta a:hover { color: var(--purple); }
 @media (min-width: 720px) { .trust-cards { grid-template-columns: repeat(3, 1fr); } }
+
+/* Mentions légales */
+.mentions-legales { padding: 60px 0 80px; max-width: 780px; }
+.mentions-legales h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 40px; }
+.mentions-legales h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 12px; color: var(--violet); }
+.mentions-legales p, .mentions-legales li { color: var(--muted); line-height: 1.75; }
+.mentions-legales ul { padding-left: 1.25rem; margin: 8px 0; }
+.mentions-legales a { color: var(--violet); text-underline-offset: 3px; }

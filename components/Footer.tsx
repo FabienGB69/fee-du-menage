@@ -23,6 +23,9 @@ export function Footer() {
           WhatsApp devis
         </a>
       </address>
+      <Link href="/mentions-legales" style={{ fontSize: '0.8rem', color: 'var(--muted)', textDecoration: 'none' }}>
+        Mentions légales
+      </Link>
     </footer>
   );
 }
