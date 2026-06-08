@@ -853,3 +853,65 @@ button:disabled {
 /* Mobile nav */
 .mobile-nav-panel { position: fixed; inset: 0; top: 64px; background: var(--surface, #fff); z-index: 90; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-top: 1px solid var(--border, #e5e7eb); }
 .mobile-nav-panel a { font-size: 1.125rem; font-weight: 500; color: var(--ink); padding: 0.75rem 0; border-bottom: 1px solid var(--border, #f0f0f0); }
+
+/* ── Design polish ──────────────────────────────────────────────────────── */
+
+/* Typography */
+h1 { font-weight: 800; text-wrap: balance; }
+h2 { font-weight: 700; text-wrap: balance; }
+h3 { text-wrap: balance; }
+
+/* Button hover states */
+.btn-primary:hover {
+  box-shadow: 0 22px 44px rgba(109, 76, 246, 0.42);
+}
+.btn-secondary:hover,
+.btn-outline:hover {
+  background: var(--soft);
+  border-color: var(--violet);
+  color: var(--violet);
+}
+.btn-whatsapp:hover {
+  box-shadow: 0 22px 44px rgba(37, 211, 102, 0.40);
+}
+.btn:active { transform: translateY(0) scale(0.98); }
+
+/* Nav active link */
+.nav-links a[aria-current="page"] {
+  color: var(--violet);
+  font-weight: 800;
+}
+
+/* Focus visible — accessibility */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+}
+
+/* Service cards — flexible grid instead of forced 5 columns */
+@media (min-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* Trust section */
+.trust-section { padding: 60px 0; }
+.trust-rating { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 48px; text-align: center; }
+.trust-stars { display: flex; gap: 4px; color: #f59e0b; }
+.trust-stat { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; color: var(--ink); }
+.trust-cards { display: grid; gap: 24px; grid-template-columns: 1fr; margin-bottom: 40px; }
+.trust-card { background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow); }
+.trust-card-quote { font-size: 1rem; line-height: 1.65; color: var(--ink); }
+.trust-card-author { display: flex; flex-direction: column; gap: 4px; }
+.trust-card-name { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.trust-card-service { font-size: 0.8rem; color: var(--muted); }
+.trust-card-stars { display: flex; gap: 3px; color: #f59e0b; }
+.trust-cta { text-align: center; }
+.trust-cta a { color: var(--violet); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.trust-cta a:hover { color: var(--purple); }
+@media (min-width: 720px) { .trust-cards { grid-template-columns: repeat(3, 1fr); } }

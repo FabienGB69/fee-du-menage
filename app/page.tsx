@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Award, BadgePercent, FileCheck, MapPin, Star, ThumbsUp } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
-import { BrandShowcase } from '@/components/BrandShowcase';
+import { TrustSection } from '@/components/TrustSection';
 import { DjamilaPresentation } from '@/components/DjamilaPresentation';
 import { ProcessSteps } from '@/components/ProcessSteps';
 import { QuoteForm } from '@/components/QuoteForm';
@@ -101,7 +101,7 @@ export default function HomePage() {
         </aside>
       </section>
 
-      <BrandShowcase />
+      <TrustSection />
 
       <DjamilaPresentation />
 
