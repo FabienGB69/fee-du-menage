@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BrandShowcase } from '@/components/BrandShowcase';
+import Link from 'next/link';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
 import { siteConfig, whatsappHref } from '@/lib/site';
+import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Aide ménagère à Lyon 9 - Devis gratuit',
@@ -69,6 +71,8 @@ export default function HomePage() {
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
           <div className="hero-logo-wrap">
             <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={260} height={260} priority />
+          <div className="sparkle" aria-hidden="true">
+            ✦
           </div>
           <h2>Devis rapide et gratuit</h2>
           <p>Une réponse claire pour votre ménage à domicile à Lyon, avec une approche soignée et méticuleuse.</p>
@@ -141,6 +145,7 @@ export default function HomePage() {
           <div>
             <strong>Devis gratuit</strong>
             <span>Vous validez les conditions avant de confirmer l’intervention.</span>
+            <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
             <strong>Service à la Personne</strong>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { siteConfig, whatsappHref } from '@/lib/site';
+import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact et devis gratuit ménage Lyon',

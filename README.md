@@ -18,6 +18,16 @@ Site vitrine dynamique Next.js pour Fée du Ménage, aide ménagère à Lyon 9e 
 - Pas de tarifs affichés au lancement.
 - Google Analytics et Search Console seront ajoutés après mise en ligne.
 - Le nom de domaine est géré par la cliente.
+Site vitrine Next.js pour Fée du Ménage, aide ménagère à Lyon 9e et alentours.
+
+## Fonctionnalités
+
+- Page d’accueil orientée conversion avec CTA téléphone et devis.
+- Pages dédiées : services, crédit d’impôt, avis et contact.
+- Formulaire de devis React envoyé vers `/api/devis`.
+- Stockage Supabase configurable dans la table `quote_requests`.
+- Email automatique configurable vers Djamila via Resend.
+- SEO local : femme de ménage Lyon, aide ménagère Lyon, ménage à domicile Lyon, ménage Lyon 9, nettoyage Airbnb Lyon.
 
 ## Variables d’environnement
 
@@ -31,6 +41,7 @@ RESEND_FROM="Fée du Ménage <devis@your-domain.fr>"
 ```
 
 `RESEND_API_KEY` est nécessaire pour l’envoi automatique des demandes par email en production. Supabase reste optionnel pour conserver un historique des demandes. Sans `RESEND_API_KEY`, la route devis renvoie une erreur afin d’éviter une fausse confirmation côté client.
+Si Supabase ou Resend ne sont pas configurés, l’API répond toujours en local, mais le stockage et/ou l’envoi email sont désactivés.
 
 ## Table Supabase attendue
 

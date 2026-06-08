@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
+import { Analytics } from '@vercel/analytics/next';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import './globals.css';
@@ -44,6 +45,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <main>{children}</main>
         <FloatingWhatsApp />
         <Footer />
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

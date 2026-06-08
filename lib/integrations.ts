@@ -57,6 +57,27 @@ export async function sendQuoteEmail(payload: QuotePayload) {
 
   if (error) {
     throw new Error(`Resend email failed: ${error.message}`);
+    return { configured: false, sent: false } as const;
+  }
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: process.env.RESEND_FROM || 'Fée du Ménage <devis@fee-du-menage.fr>',
+      to: [siteConfig.email],
+      reply_to: payload.email,
+      subject: `Demande de devis - ${payload.nom}`,
+      text: formatQuoteEmail(payload)
+    })
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Resend email failed: ${response.status} ${errorBody}`);
   }
 
   return { configured: true, sent: true } as const;
