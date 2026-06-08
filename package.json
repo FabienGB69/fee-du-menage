@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "openhuman:install": "bash tools/openhuman/install.sh",
-    "openhuman:repo": "node -e \"console.log('https://github.com/tinyhumansai/openhuman')\""
+    "crewai:install": "cd agents/crewai && uv sync --python 3.13",
+    "crewai:check": "cd agents/crewai && uv run python -c \"from importlib.metadata import version; print(version('crewai'))\"",
+    "crewai:run": "cd agents/crewai && uv run fee-du-menage-crew"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.102.0",

@@ -68,16 +68,17 @@ create table quote_requests (
 ```
 
 
-## OpenHuman
+## CrewAI
 
-Un helper d’installation OpenHuman est disponible dans `tools/openhuman`. OpenHuman est une application desktop externe : elle reste hors des dépendances runtime Next.js.
+Un workspace CrewAI isolé est disponible dans `agents/crewai` pour préparer des workflows d’agents (revue de bugs, SEO, maintenance) sans mélanger les dépendances Python avec Next.js.
 
 ```bash
-npm run openhuman:install
-npm run openhuman:repo
+npm run crewai:install
+npm run crewai:check
+npm run crewai:run
 ```
 
-> Note : `openhuman:install` utilise Homebrew sur macOS ou le dépôt apt signé sur Debian/Ubuntu.
+> Note : CrewAI requiert Python `>=3.10` et `<3.14`; le workspace cible Python `3.13`.
 
 ## Commandes
 
