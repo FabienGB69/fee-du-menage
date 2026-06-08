@@ -1,10 +1,15 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import type { Metadata, Viewport } from 'next';
+import type { ReactNode } from 'react';
+import { Inter, Playfair_Display } from 'next/font/google';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import './globals.css';
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap', weight: ['700'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://fee-du-menage.fr'),
@@ -14,6 +19,7 @@ export const metadata: Metadata = {
   },
   description:
     "Fée du Ménage, aide ménagère à Lyon : ménage régulier, grand nettoyage, vitres, déménagement et nettoyage Airbnb. 106 avis Wecasa, note 5/5, crédit d'impôt 50 %.",
+    "Fée du Ménage, aide ménagère à Lyon : ménage régulier, grand nettoyage, vitres, déménagement et nettoyage Airbnb. 106 avis Wecasa, note 5/5, crédit d’impôt 50 %.",
   keywords: [
     'femme de ménage Lyon',
     'aide ménagère Lyon',

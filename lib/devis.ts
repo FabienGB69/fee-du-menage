@@ -1,13 +1,6 @@
-export type QuotePayload = {
-  nom: string;
-  telephone: string;
-  email: string;
-  adresse: string;
-  typePrestation: string;
-  surfaceLogement?: string;
-  frequenceSouhaitee?: string;
-  message?: string;
-};
+import { z } from 'zod';
+
+const HEADER_SAFE = /^[^\r\n\x00]+$/;
 
 export const prestationOptions = [
   'Ménage régulier',
@@ -19,59 +12,23 @@ export const prestationOptions = [
 
 export const frequenceOptions = ['Ponctuelle', 'Hebdomadaire', 'Toutes les 2 semaines', 'Mensuelle', 'À définir ensemble'] as const;
 
-export type QuoteValidationResult =
-  | { success: true; data: QuotePayload }
-  | { success: false; errors: Partial<Record<keyof QuotePayload, string>> };
+export const quoteSchema = z.object({
+  nom: z.string().trim().min(2, 'Indiquez votre nom.').max(100).regex(HEADER_SAFE, 'Nom invalide.'),
+  telephone: z.string().trim().min(8, 'Indiquez un téléphone valide.').max(20).regex(/^[\d\s+\-().]+$/, 'Téléphone invalide.'),
+  email: z.string().trim().email('Indiquez un email valide.').max(200).regex(HEADER_SAFE, 'Email invalide.'),
+  adresse: z.string().trim().min(6, 'Indiquez votre adresse à Lyon.').max(200).regex(HEADER_SAFE, 'Adresse invalide.'),
+  typePrestation: z.enum(prestationOptions, { required_error: 'Choisissez une prestation.' }),
+  surfaceLogement: z.string().trim().max(30).regex(/^[\d\s,./m²]*$/, 'Format invalide.').optional().default(''),
+  frequenceSouhaitee: z.enum(frequenceOptions).or(z.literal('')).optional().default(''),
+  message: z.string().trim().max(1200, 'Votre message est trop long.').optional().default(''),
+  _honeypot: z.string().max(0, '').optional().default('')
+});
 
-export function validateQuotePayload(input: Record<keyof QuotePayload, string>): QuoteValidationResult {
-  const payload: QuotePayload = {
-    nom: input.nom.trim(),
-    telephone: input.telephone.trim(),
-    email: input.email.trim(),
-    adresse: input.adresse.trim(),
-    typePrestation: input.typePrestation.trim(),
-    surfaceLogement: input.surfaceLogement.trim(),
-    frequenceSouhaitee: input.frequenceSouhaitee.trim(),
-    message: input.message.trim()
-  };
-
-  const errors: Partial<Record<keyof QuotePayload, string>> = {};
-
-  if (payload.nom.length < 2) errors.nom = 'Indiquez votre nom.';
-  if (payload.telephone.length < 8) errors.telephone = 'Indiquez un téléphone valide.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) errors.email = 'Indiquez un email valide.';
-  if (payload.adresse.length < 6) errors.adresse = 'Indiquez votre adresse à Lyon.';
-  if (!prestationOptions.includes(payload.typePrestation as (typeof prestationOptions)[number])) errors.typePrestation = 'Choisissez une prestation.';
-  if (payload.frequenceSouhaitee && !frequenceOptions.includes(payload.frequenceSouhaitee as (typeof frequenceOptions)[number])) {
-    errors.frequenceSouhaitee = 'Choisissez une fréquence valide.';
-  }
-  if ((payload.message || '').length > 1200) errors.message = 'Votre message est trop long.';
-
-  if (Object.keys(errors).length > 0) {
-    return { success: false, errors };
-  }
-
-  return { success: true, data: payload };
-}
+export type QuotePayload = z.infer<typeof quoteSchema>;
 
 export function normalizeQuotePayload(input: unknown): QuotePayload | null {
-  if (!input || typeof input !== 'object') {
-    return null;
-  }
-
-  const record = input as Record<keyof QuotePayload, unknown>;
-  const validation = validateQuotePayload({
-    nom: stringValue(record.nom),
-    telephone: stringValue(record.telephone),
-    email: stringValue(record.email),
-    adresse: stringValue(record.adresse),
-    typePrestation: stringValue(record.typePrestation),
-    surfaceLogement: stringValue(record.surfaceLogement),
-    frequenceSouhaitee: stringValue(record.frequenceSouhaitee),
-    message: stringValue(record.message)
-  });
-
-  return validation.success ? validation.data : null;
+  const result = quoteSchema.safeParse(input);
+  return result.success ? result.data : null;
 }
 
 export function formatQuoteEmail(payload: QuotePayload) {
@@ -91,8 +48,4 @@ export function formatQuoteEmail(payload: QuotePayload) {
     '',
     'Répondre rapidement permet de maximiser la conversion.'
   ].join('\n');
-}
-
-function stringValue(value: unknown) {
-  return typeof value === 'string' ? value : '';
 }

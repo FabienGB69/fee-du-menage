@@ -1,0 +1,30 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Fée du Ménage</title>
+  <desc id="desc">Logo rond bleu violet rose avec maison, étoiles et balai stylisé</desc>
+  <defs>
+    <linearGradient id="bg" x1="25" y1="28" x2="194" y2="196" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#39B8F2"/>
+      <stop offset="0.5" stop-color="#7C4DFF"/>
+      <stop offset="1" stop-color="#F06BA8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="65" y1="66" x2="159" y2="165" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FDE7F2"/>
+    </linearGradient>
+    <filter id="shadow" x="12" y="14" width="196" height="196" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#6D4CF6" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <circle cx="110" cy="106" r="86" fill="url(#bg)" filter="url(#shadow)"/>
+  <path d="M58 103.5L110 61L162 103.5" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M73 99V151C73 156.523 77.4772 161 83 161H137C142.523 161 147 156.523 147 151V99" fill="url(#accent)"/>
+  <path d="M73 99V151C73 156.523 77.4772 161 83 161H137C142.523 161 147 156.523 147 151V99" stroke="white" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M102 161V128C102 123.582 105.582 120 110 120C114.418 120 118 123.582 118 128V161" fill="#7C4DFF" fill-opacity="0.18"/>
+  <path d="M102 161V128C102 123.582 105.582 120 110 120C114.418 120 118 123.582 118 128V161" stroke="#7C4DFF" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M151 63L156 75L169 80L156 85L151 98L146 85L133 80L146 75L151 63Z" fill="white"/>
+  <path d="M64 55L68 64L78 68L68 72L64 82L60 72L50 68L60 64L64 55Z" fill="#FDE7F2"/>
+  <path d="M154 144L174 164" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <path d="M143 155L163 175" stroke="#4EC3F7" stroke-width="8" stroke-linecap="round"/>
+  <path d="M153 145L143 155" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <path d="M166 158L156 168" stroke="#FDE7F2" stroke-width="8" stroke-linecap="round"/>
+</svg>

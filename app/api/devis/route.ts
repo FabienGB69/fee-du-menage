@@ -26,6 +26,13 @@ export async function POST(request: Request) {
       email,
       message: email.sent ? 'Demande envoyée à Djamila par email.' : 'Demande reçue.'
     });
+  if (payload._honeypot) {
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await Promise.all([saveQuoteToSupabase(payload), sendQuoteEmail(payload)]);
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Erreur lors du traitement de la demande.' }, { status: 500 });

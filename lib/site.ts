@@ -15,6 +15,15 @@ export const siteConfig = {
 
 export const whatsappHref = `https://wa.me/33609896564?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
 
+  email: 'djemila.hamitouche@gmail.com',
+  address: '55 rue du Bourdonnais, 69009 Lyon',
+  area: 'Lyon uniquement, rayon de 8 km autour de Lyon 9',
+  wecasaUrl: 'https://www.wecasa.fr/menage/lyon/djamila',
+  reviews: 106,
+  rating: '5/5',
+  quoteRecipientName: 'Djamila'
+};
+
 export const services = [
   {
     title: 'Ménage régulier',

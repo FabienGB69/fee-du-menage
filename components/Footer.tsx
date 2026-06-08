@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig, whatsappHref } from '@/lib/site';
+import { siteConfig } from '@/lib/site';
 
 export function Footer() {
   return (
