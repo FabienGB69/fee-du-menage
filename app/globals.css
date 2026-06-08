@@ -839,3 +839,234 @@ button:disabled {
     height: 190px;
   }
 }
+
+/* ── Mentions légales / Données personnelles ────────────────── */
+.mentions-legales h1 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 32px;
+}
+
+.mentions-legales section {
+  margin-bottom: 40px;
+}
+
+.mentions-legales h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--violet);
+}
+
+.mentions-legales p {
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.mentions-legales ul {
+  color: var(--muted);
+  padding-left: 1.4em;
+  margin: 0 0 10px;
+}
+
+.mentions-legales li {
+  margin-bottom: 6px;
+}
+
+.mentions-legales a {
+  color: var(--violet);
+  font-weight: 700;
+}
+
+/* ── Cookie table ───────────────────────────────────────────── */
+.cookie-table-wrap {
+  overflow-x: auto;
+  margin-top: 14px;
+}
+
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.cookie-table th,
+.cookie-table td {
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  text-align: left;
+  color: var(--muted);
+}
+
+.cookie-table th {
+  background: var(--soft);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cookie-table code {
+  font-family: monospace;
+  font-size: 0.88rem;
+  background: rgba(109, 76, 246, 0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* ── Cookie preferences panel ───────────────────────────────── */
+.cookie-preferences-panel {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.cookie-preferences-panel h3 {
+  margin: 0 0 18px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cookie-toggle-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cookie-toggle-row:last-of-type {
+  border-bottom: none;
+}
+
+.cookie-toggle-row > div {
+  flex: 1;
+}
+
+.cookie-toggle-row strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  color: var(--ink);
+}
+
+.cookie-toggle-row p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Toggle switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: #d1d5db;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: var(--violet);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.toggle-switch--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.toggle-switch--disabled input:checked + .toggle-slider {
+  background: #9ca3af;
+}
+
+.cookie-pref-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cookie-pref-success {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #176c3b;
+}
+
+/* ── Cookie banner ──────────────────────────────────────────── */
+.cookie-banner-inner {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+}
+
+.cookie-banner-text {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── Footer legal links ─────────────────────────────────────── */
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.footer-legal a {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-legal a:hover {
+  color: var(--violet);
+  text-decoration: underline;
+}
