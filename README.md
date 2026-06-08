@@ -67,6 +67,18 @@ create table quote_requests (
 );
 ```
 
+
+## OpenHuman
+
+Un helper d’installation OpenHuman est disponible dans `tools/openhuman`. OpenHuman est une application desktop externe : elle reste hors des dépendances runtime Next.js.
+
+```bash
+npm run openhuman:install
+npm run openhuman:repo
+```
+
+> Note : `openhuman:install` utilise Homebrew sur macOS ou le dépôt apt signé sur Debian/Ubuntu.
+
 ## Commandes
 
 ```bash

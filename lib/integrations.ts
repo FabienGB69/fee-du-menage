@@ -48,6 +48,10 @@ export async function sendQuoteEmail(payload: QuotePayload) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('RESEND_API_KEY is required in production');
+    }
+
     return { configured: false, sent: false } as const;
   }
 
