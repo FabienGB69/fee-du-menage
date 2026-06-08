@@ -4,6 +4,7 @@ import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
 import { siteConfig, whatsappHref } from '@/lib/site';
+import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Aide ménagère à Lyon 9 - Devis gratuit',
@@ -137,6 +138,7 @@ export default function HomePage() {
           <div>
             <strong>Devis gratuit</strong>
             <span>Vous validez les conditions avant de confirmer l’intervention.</span>
+            <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
             <strong>Service à la Personne</strong>

@@ -33,6 +33,9 @@ export function Header() {
             <Link href="/contact#devis">Devis gratuit</Link>
           </Button>
         </div>
+        <a className="nav-call" href={siteConfig.phoneHref} aria-label="Appeler Fée du Ménage">
+          06 09 89 65 64
+        </a>
       </nav>
     </header>
   );
