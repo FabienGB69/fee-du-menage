@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
 import { excludedServices, siteConfig, whatsappHref } from '@/lib/site';
+import { excludedServices, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Services de ménage à domicile à Lyon',
