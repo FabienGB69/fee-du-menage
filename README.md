@@ -6,6 +6,10 @@ Site vitrine dynamique Next.js pour Fée du Ménage, aide ménagère à Lyon 9e 
 
 - Page d’accueil orientée conversion avec CTA téléphone, devis et WhatsApp.
 - Pages dédiées : services, crédit d’impôt, avis et contact.
+- Formulaire de devis React envoyé vers `/api/devis` avec validation TypeScript partagée côté client et API.
+- Envoi email automatique vers `prestation.menage69@gmail.com` via l’API REST Resend.
+- Stockage Supabase optionnel dans la table `quote_requests`.
+- Composants UI réutilisables et styles responsive dans `app/globals.css`.
 - Formulaire de devis React Hook Form + Zod envoyé vers `/api/devis`.
 - Envoi email automatique vers `prestation.menage69@gmail.com` via Resend.
 - Stockage Supabase optionnel dans la table `quote_requests`.

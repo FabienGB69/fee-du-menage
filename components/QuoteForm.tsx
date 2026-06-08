@@ -127,6 +127,14 @@ export function QuoteForm() {
 }
 
 function FormField({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+  return (
+    <Label>
+      {label}
+      {children}
+      {error ? <span className="field-error">{error}</span> : null}
+    </Label>
+  );
+}
   const id = useId();
   const errorId = error ? `${id}-err` : undefined;
   const child = React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {

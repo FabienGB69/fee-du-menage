@@ -17,6 +17,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Champs obligatoires manquants.' }, { status: 400 });
   }
 
+  try {
+    const [supabase, email] = await Promise.all([saveQuoteToSupabase(payload), sendQuoteEmail(payload)]);
+
+    return NextResponse.json({
+      ok: true,
+      supabase,
+      email,
+      message: email.sent ? 'Demande envoyée à Djamila par email.' : 'Demande reçue.'
+    });
   if (payload._honeypot) {
     return NextResponse.json({ ok: true });
   }
