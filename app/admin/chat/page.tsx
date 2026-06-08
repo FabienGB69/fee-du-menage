@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { hashPassword } from '@/lib/admin/auth'
+import { verifyToken } from '@/lib/admin/auth'
 import ChatInterface from '@/components/admin/ChatInterface'
 
 export default async function AdminChatPage() {
@@ -12,8 +12,7 @@ export default async function AdminChatPage() {
     redirect('/admin/login')
   }
 
-  const expected = await hashPassword(adminPassword)
-  if (token !== expected) {
+  if (!(await verifyToken(token, adminPassword))) {
     redirect('/admin/login')
   }
 

@@ -67,6 +67,19 @@ create table quote_requests (
 );
 ```
 
+
+## LeanCTX
+
+Un helper d’installation LeanCTX est disponible dans `tools/lean-ctx` pour réduire les tokens et éviter les lectures répétées pendant les sessions agentiques.
+
+```bash
+npm run leanctx:install
+npm run leanctx:setup
+npm run leanctx:doctor
+```
+
+> Note : `leanctx:install` utilise Homebrew, npm global ou Cargo selon ce qui est disponible sur la machine.
+
 ## Commandes
 
 ```bash

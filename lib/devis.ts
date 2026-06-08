@@ -21,7 +21,7 @@ export const quoteSchema = z.object({
   surfaceLogement: z.string().trim().max(30).regex(/^[\d\s,./m²]*$/, 'Format invalide.').optional().default(''),
   frequenceSouhaitee: z.enum(frequenceOptions).or(z.literal('')).optional().default(''),
   message: z.string().trim().max(1200, 'Votre message est trop long.').optional().default(''),
-  _honeypot: z.string().max(0, '').optional().default('')
+  _honeypot: z.string().max(200).optional().default('')
 });
 
 export type QuotePayload = z.infer<typeof quoteSchema>;

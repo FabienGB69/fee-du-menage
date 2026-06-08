@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "leanctx:install": "bash tools/lean-ctx/install.sh",
+    "leanctx:setup": "lean-ctx setup",
+    "leanctx:doctor": "lean-ctx doctor",
+    "leanctx:repo": "node -e \"console.log('https://github.com/yvgude/lean-ctx')\""
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.102.0",
