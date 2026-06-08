@@ -67,6 +67,19 @@ create table quote_requests (
 );
 ```
 
+
+## CrewAI
+
+Un workspace CrewAI isolé est disponible dans `agents/crewai` pour préparer des workflows d’agents (revue de bugs, SEO, maintenance) sans mélanger les dépendances Python avec Next.js.
+
+```bash
+npm run crewai:install
+npm run crewai:check
+npm run crewai:run
+```
+
+> Note : CrewAI requiert Python `>=3.10` et `<3.14`; le workspace cible Python `3.13`.
+
 ## Commandes
 
 ```bash
