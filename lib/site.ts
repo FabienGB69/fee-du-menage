@@ -15,21 +15,12 @@ export const siteConfig = {
 
 export const whatsappHref = `https://wa.me/33609896564?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
 
-  email: 'djemila.hamitouche@gmail.com',
-  address: '55 rue du Bourdonnais, 69009 Lyon',
-  area: 'Lyon uniquement, rayon de 8 km autour de Lyon 9',
-  wecasaUrl: 'https://www.wecasa.fr/menage/lyon/djamila',
-  reviews: 106,
-  rating: '5/5',
-  quoteRecipientName: 'Djamila'
-};
-
 export const services = [
   {
     title: 'Ménage régulier',
     icon: '🏡',
     description: 'Entretien hebdomadaire, bi-mensuel ou ponctuel pour garder un intérieur propre et agréable.',
-    detail: 'Idéal pour les appartements et maisons à Lyon : dépoussiérage, sols, cuisine, salle de bain et entretien courant.'
+    detail: 'Idéal pour les appartements et maisons à Lyon : dépoussiérage, sols, cuisine, salle de bain et entretien courant.'
   },
   {
     title: 'Grand nettoyage',

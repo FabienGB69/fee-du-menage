@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
 import { excludedServices, siteConfig, whatsappHref } from '@/lib/site';
-import { excludedServices, siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Services de ménage à domicile à Lyon',
-  description: 'Ménage régulier, grand nettoyage, ménage après déménagement, nettoyage Airbnb et vitres à Lyon 9 et dans un rayon de 8 km.',
+  description: 'Ménage régulier, grand nettoyage, ménage après déménagement, nettoyage Airbnb et vitres à Lyon 9 et dans un rayon de 8 km.',
   alternates: { canonical: '/services' }
 };
 

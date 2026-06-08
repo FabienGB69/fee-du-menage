@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { siteConfig, whatsappHref } from '@/lib/site';
-import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact et devis gratuit ménage Lyon',
@@ -16,7 +15,7 @@ export default function ContactPage() {
       <section className="page-hero section-shell compact-hero">
         <p className="eyebrow">Contact</p>
         <h1>Demander un devis gratuit</h1>
-        <p className="hero-subtitle">Appelez directement ou envoyez une demande : Djamila reçoit automatiquement votre besoin par email.</p>
+        <p className="hero-subtitle">Appelez directement ou envoyez une demande : Djamila reçoit automatiquement votre besoin par email.</p>
         <div className="contact-cards">
           <a href={siteConfig.phoneHref}><strong>Téléphone</strong><span>{siteConfig.phoneDisplay}</span></a>
           <a href={`mailto:${siteConfig.email}`}><strong>Email</strong><span>{siteConfig.email}</span></a>

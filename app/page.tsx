@@ -2,12 +2,11 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BrandShowcase } from '@/components/BrandShowcase';
-import Link from 'next/link';
+import { DjamilaPresentation } from '@/components/DjamilaPresentation';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
 import { siteConfig, whatsappHref } from '@/lib/site';
-import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Aide ménagère à Lyon 9 - Devis gratuit',
@@ -49,12 +48,12 @@ export default function HomePage() {
           <p className="eyebrow">Aide ménagère locale • Lyon 9 et alentours</p>
           <h1>Votre aide ménagère de confiance à Lyon</h1>
           <p className="hero-subtitle">
-            Ménage régulier, grand nettoyage, vitres, déménagement et locations Airbnb. Intervention à Lyon dans un rayon de 8 km.
+            Ménage régulier, grand nettoyage, vitres, déménagement et locations Airbnb. Intervention à Lyon dans un rayon de 8 km.
           </p>
           <div className="badges" aria-label="Points forts">
             <span>106 avis clients vérifiés</span>
             <span>Note 5/5</span>
-            <span>Crédit d’impôt 50 %</span>
+            <span>Crédit d’impôt 50 %</span>
           </div>
           <div className="hero-actions">
             <a className="btn btn-primary" href={siteConfig.phoneHref}>
@@ -71,6 +70,7 @@ export default function HomePage() {
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
           <div className="hero-logo-wrap">
             <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={260} height={260} priority />
+          </div>
           <div className="sparkle" aria-hidden="true">
             ✦
           </div>
@@ -78,19 +78,21 @@ export default function HomePage() {
           <p>Une réponse claire pour votre ménage à domicile à Lyon, avec une approche soignée et méticuleuse.</p>
           <ul>
             <li>
-              <strong>Téléphone :</strong> <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
+              <strong>Téléphone :</strong> <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
             </li>
             <li>
-              <strong>Email :</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              <strong>Email :</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
             </li>
             <li>
-              <strong>Adresse :</strong> {siteConfig.address}
+              <strong>Adresse :</strong> {siteConfig.address}
             </li>
           </ul>
         </aside>
       </section>
 
       <BrandShowcase />
+
+      <DjamilaPresentation />
 
       <section className="trust-strip" id="avis" aria-label="Avis clients">
         <div>
@@ -107,15 +109,16 @@ export default function HomePage() {
         <div className="tax-grid">
           <div>
             <p>
-              Les prestations de ménage à domicile éligibles au Service à la Personne peuvent ouvrir droit à <strong>50 % de crédit d’impôt</strong>.
-              Cela permet de réduire le coût réel de votre intervention tout en bénéficiant d’un service professionnel à domicile.
+              Les prestations de ménage à domicile éligibles au Service à la Personne peuvent ouvrir droit à{' '}
+              <strong>50 % de crédit d’impôt</strong>. Cela permet de réduire le coût réel de votre intervention tout en
+              bénéficiant d’un service professionnel à domicile.
             </p>
             <p className="note">Selon votre situation fiscale et les règles en vigueur. Les informations utiles sont précisées lors du devis.</p>
           </div>
           <div className="example-card">
             <span>Exemple</span>
-            <strong>100 € facturés = 50 € de coût réel</strong>
-            <small>après avantage fiscal de 50 %</small>
+            <strong>100 € facturés = 50 € de coût réel</strong>
+            <small>après avantage fiscal de 50 %</small>
           </div>
         </div>
       </section>
@@ -128,7 +131,7 @@ export default function HomePage() {
       </section>
 
       <section className="why section-shell" id="pourquoi">
-        <SectionHeading eyebrow="Pourquoi choisir Fée du Ménage ?" title="Une aide ménagère fiable, locale et reconnue à Lyon" />
+        <SectionHeading eyebrow="Pourquoi choisir Fée du Ménage ?" title="Une aide ménagère fiable, locale et reconnue à Lyon" />
         <div className="why-list">
           <div>
             <strong>Travail soigné et méticuleux</strong>
@@ -144,7 +147,6 @@ export default function HomePage() {
           </div>
           <div>
             <strong>Devis gratuit</strong>
-            <span>Vous validez les conditions avant de confirmer l’intervention.</span>
             <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
@@ -153,7 +155,7 @@ export default function HomePage() {
           </div>
           <div>
             <strong>Intervention locale à Lyon</strong>
-            <span>Un service de proximité autour de Lyon 9.</span>
+            <span>Un service de proximité autour de Lyon 9.</span>
           </div>
         </div>
       </section>
@@ -162,9 +164,9 @@ export default function HomePage() {
         <div className="area-card">
           <div>
             <p className="eyebrow">Zone d’intervention</p>
-            <h2>Lyon uniquement, rayon de 8 km autour du 69009</h2>
+            <h2>Lyon uniquement, rayon de 8 km autour du 69009</h2>
             <p>
-              Fée du Ménage intervient localement à Lyon et dans un rayon de 8 km autour du 55 rue du Bourdonnais, 69009 Lyon.
+              Fée du Ménage intervient localement à Lyon et dans un rayon de 8 km autour du 55 rue du Bourdonnais, 69009 Lyon.
               Cette proximité permet de proposer un service réactif, régulier et adapté aux besoins du secteur.
             </p>
           </div>
@@ -192,23 +194,23 @@ function FaqSection() {
       <SectionHeading eyebrow="Questions fréquentes" title="FAQ" centered />
       <div className="faq-list">
         <details>
-          <summary>Intervenez-vous dans toute la métropole de Lyon ?</summary>
-          <p>Non, uniquement Lyon et rayon de 8 km.</p>
+          <summary>Intervenez-vous dans toute la métropole de Lyon ?</summary>
+          <p>Non, uniquement Lyon et rayon de 8 km.</p>
         </details>
         <details>
-          <summary>Puis-je bénéficier du crédit d’impôt ?</summary>
+          <summary>Puis-je bénéficier du crédit d’impôt ?</summary>
           <p>Oui, dans le cadre des prestations éligibles au Service à la Personne.</p>
         </details>
         <details>
-          <summary>Le devis est-il gratuit ?</summary>
+          <summary>Le devis est-il gratuit ?</summary>
           <p>Oui.</p>
         </details>
         <details>
-          <summary>Faites-vous les vitres ?</summary>
+          <summary>Faites-vous les vitres ?</summary>
           <p>Oui.</p>
         </details>
         <details>
-          <summary>Faites-vous les locations Airbnb ?</summary>
+          <summary>Faites-vous les locations Airbnb ?</summary>
           <p>Oui.</p>
         </details>
       </div>
