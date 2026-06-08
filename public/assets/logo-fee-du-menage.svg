@@ -1,3 +1,81 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Fée du Ménage</title>
+  <desc id="desc">Logo Fée du Ménage avec fée, maison, plumeau, produits ménagers, dégradé bleu violet rose et slogan Votre maison étincelante</desc>
+  <defs>
+    <linearGradient id="brand" x1="122" y1="152" x2="776" y2="744" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D8CE0"/>
+      <stop offset="0.48" stop-color="#7D2AE8"/>
+      <stop offset="1" stop-color="#FF4DB8"/>
+    </linearGradient>
+    <linearGradient id="pinkWing" x1="538" y1="206" x2="740" y2="454" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF4DB8"/>
+      <stop offset="1" stop-color="#B34DFF"/>
+    </linearGradient>
+    <linearGradient id="bluePink" x1="138" y1="562" x2="776" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D8CE0"/>
+      <stop offset="0.42" stop-color="#6B38D8"/>
+      <stop offset="1" stop-color="#FF4DB8"/>
+    </linearGradient>
+    <filter id="softShadow" x="70" y="80" width="760" height="760" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#7D2AE8" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="900" rx="80" fill="white" fill-opacity="0"/>
+  <g filter="url(#softShadow)">
+    <path d="M96 560C84 393 158 244 303 163C459 76 645 101 777 225" stroke="url(#brand)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M789 249C853 356 851 510 792 626" stroke="#FF4DB8" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- House -->
+    <path d="M126 512L285 371L426 512" stroke="url(#brand)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M194 511L285 431L374 511V590H194V511Z" fill="white" stroke="url(#brand)" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M315 392V338H359V431" stroke="#2740A3" stroke-width="20" stroke-linecap="round"/>
+    <rect x="252" y="491" width="34" height="34" rx="4" fill="#1D8CE0"/>
+    <rect x="298" y="491" width="34" height="34" rx="4" fill="#1D8CE0"/>
+    <rect x="252" y="537" width="34" height="34" rx="4" fill="#1D8CE0"/>
+    <rect x="298" y="537" width="34" height="34" rx="4" fill="#2740A3"/>
+    <path d="M136 607C237 562 358 568 430 613" stroke="#1D8CE0" stroke-width="11" stroke-linecap="round"/>
+
+    <!-- Fairy wings -->
+    <path d="M576 316C621 222 707 173 790 161C768 258 716 334 607 373C597 350 588 331 576 316Z" fill="url(#pinkWing)" fill-opacity="0.88" stroke="white" stroke-width="9"/>
+    <path d="M589 384C650 344 721 333 779 349C728 413 668 452 597 445C597 423 594 402 589 384Z" fill="url(#pinkWing)" fill-opacity="0.7" stroke="white" stroke-width="8"/>
+    <path d="M636 229C668 250 706 286 728 320" stroke="white" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+    <path d="M616 349C666 367 708 390 736 416" stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Fairy body silhouette -->
+    <circle cx="507" cy="250" r="40" fill="url(#brand)"/>
+    <path d="M514 207C549 184 589 207 574 238C603 244 609 283 575 294C545 304 509 283 497 259" fill="#4C249B"/>
+    <path d="M480 303C529 296 564 330 574 386C584 448 621 496 669 531L646 570C594 551 548 508 522 453C502 507 470 546 425 564L398 525C431 492 453 451 459 388C462 354 466 325 480 303Z" fill="url(#brand)"/>
+    <path d="M468 341C431 361 396 376 356 384" stroke="#243A9A" stroke-width="18" stroke-linecap="round"/>
+    <path d="M365 382C341 341 302 310 262 303" stroke="#FF4DB8" stroke-width="11" stroke-linecap="round"/>
+    <path d="M260 302C251 277 268 255 291 262C298 236 329 232 338 258C361 249 379 274 361 294C376 312 354 333 333 321C318 344 289 332 294 307C281 316 265 315 260 302Z" fill="#FF4DB8"/>
+    <path d="M556 383C608 409 650 429 703 444" stroke="#4C249B" stroke-width="18" stroke-linecap="round"/>
+    <path d="M647 566C676 591 709 612 750 631" stroke="#D71AA0" stroke-width="18" stroke-linecap="round"/>
+    <path d="M412 556C388 584 365 613 328 632" stroke="#1D8CE0" stroke-width="18" stroke-linecap="round"/>
+
+    <!-- Cleaning bucket -->
+    <path d="M716 439H801L787 525H733L716 439Z" fill="#6B38D8" stroke="#2D1A85" stroke-width="9"/>
+    <path d="M720 437C731 398 782 398 800 437" stroke="#2D1A85" stroke-width="9" stroke-linecap="round"/>
+    <path d="M779 421L795 359" stroke="#FF4DB8" stroke-width="11" stroke-linecap="round"/>
+    <path d="M769 356H826" stroke="#FF4DB8" stroke-width="16" stroke-linecap="round"/>
+    <rect x="780" y="474" width="52" height="72" rx="10" fill="#FF4DB8" transform="rotate(8 780 474)"/>
+
+    <!-- Sparkles -->
+    <path d="M174 321L187 353L220 366L187 379L174 413L161 379L128 366L161 353L174 321Z" fill="#1D8CE0"/>
+    <path d="M414 309L422 329L443 337L422 345L414 367L406 345L385 337L406 329L414 309Z" fill="#FF4DB8"/>
+    <path d="M446 452L459 484L492 497L459 510L446 544L433 510L400 497L433 484L446 452Z" fill="#FF4DB8"/>
+    <path d="M220 700L230 724L255 734L230 744L220 769L210 744L185 734L210 724L220 700Z" fill="#1D8CE0"/>
+    <path d="M456 744L470 780L507 794L470 808L456 846L442 808L405 794L442 780L456 744Z" fill="#FF4DB8"/>
+    <path d="M542 733L551 755L574 764L551 773L542 797L533 773L510 764L533 755L542 733Z" fill="#7D2AE8"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="112" y="690" font-family="Georgia, 'Times New Roman', serif" font-size="164" font-style="italic" font-weight="700" fill="url(#bluePink)" stroke="white" stroke-width="5">Fée</text>
+  <text x="479" y="696" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-style="italic" font-weight="700" fill="#7D2AE8">du</text>
+  <text x="154" y="789" font-family="Georgia, 'Times New Roman', serif" font-size="148" font-style="italic" font-weight="700" fill="url(#bluePink)" stroke="white" stroke-width="5">Ménage</text>
+  <path d="M192 825H343" stroke="#1D8CE0" stroke-width="7" stroke-linecap="round"/>
+  <path d="M596 825H747" stroke="#FF4DB8" stroke-width="7" stroke-linecap="round"/>
+  <text x="450" y="836" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="5" fill="#293A7A">VOTRE MAISON ÉTINCELANTE</text>
 <svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Fée du Ménage</title>
   <desc id="desc">Logo rond bleu violet rose avec maison, étoiles et balai stylisé</desc>

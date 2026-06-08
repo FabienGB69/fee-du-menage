@@ -1,3 +1,4 @@
+import { Resend } from 'resend';
 import { formatQuoteEmail, type QuotePayload } from './devis';
 import { siteConfig } from './site';
 
@@ -42,6 +43,20 @@ export async function sendQuoteEmail(payload: QuotePayload) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey) {
+    throw new Error('RESEND_API_KEY is required to send quote emails.');
+  }
+
+  const resend = new Resend(resendApiKey);
+  const { error } = await resend.emails.send({
+    from: process.env.RESEND_FROM || 'Fée du Ménage <devis@fee-du-menage.fr>',
+    to: siteConfig.email,
+    replyTo: payload.email,
+    subject: `Demande de devis - ${payload.nom}`,
+    text: formatQuoteEmail(payload)
+  });
+
+  if (error) {
+    throw new Error(`Resend email failed: ${error.message}`);
     return { configured: false, sent: false } as const;
   }
 

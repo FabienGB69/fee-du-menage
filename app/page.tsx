@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { BrandShowcase } from '@/components/BrandShowcase';
 import Link from 'next/link';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCards } from '@/components/ServiceCards';
+import { siteConfig, whatsappHref } from '@/lib/site';
 import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -59,9 +63,14 @@ export default function HomePage() {
             <Link className="btn btn-secondary" href="/contact#devis">
               Demander un devis gratuit
             </Link>
+            <a className="btn btn-whatsapp" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
           </div>
         </div>
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
+          <div className="hero-logo-wrap">
+            <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={260} height={260} priority />
           <div className="sparkle" aria-hidden="true">
             ✦
           </div>
@@ -80,6 +89,8 @@ export default function HomePage() {
           </ul>
         </aside>
       </section>
+
+      <BrandShowcase />
 
       <section className="trust-strip" id="avis" aria-label="Avis clients">
         <div>
@@ -133,6 +144,7 @@ export default function HomePage() {
           </div>
           <div>
             <strong>Devis gratuit</strong>
+            <span>Vous validez les conditions avant de confirmer l’intervention.</span>
             <span>Vous connaissez le tarif avant de confirmer l’intervention.</span>
           </div>
           <div>
