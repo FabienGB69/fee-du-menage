@@ -46,7 +46,7 @@ export function Header() {
         </Link>
         <div className="nav-links" aria-label="Liens rapides">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
               {item.label}
             </Link>
           ))}
