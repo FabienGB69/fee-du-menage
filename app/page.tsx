@@ -68,8 +68,15 @@ export default function HomePage() {
           </div>
         </div>
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
-          <div className="hero-logo-wrap">
-            <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={260} height={260} priority />
+          <div className="hero-img-wrap">
+            <Image
+              src="/images/hero-aide-menagere-domicile.png"
+              alt="Aide ménagère à domicile à Lyon — tablette propre, résultat soigné"
+              width={500}
+              height={220}
+              style={{ objectFit: 'cover', objectPosition: 'center top' }}
+              priority
+            />
           </div>
           <div className="sparkle" aria-hidden="true">
             ✦
@@ -93,6 +100,31 @@ export default function HomePage() {
       <BrandShowcase />
 
       <DjamilaPresentation />
+
+      <section className="ambiance section-shell" aria-label="Résultat d'une prestation de ménage à domicile">
+        <div className="ambiance-inner">
+          <div className="ambiance-photo-wrap">
+            <Image
+              src="/images/interieur-propre-lumineux.png"
+              alt="Intérieur propre et lumineux après une intervention de ménage à domicile à Lyon"
+              fill
+              style={{ objectFit: 'cover' }}
+              loading="lazy"
+              sizes="(max-width: 860px) 100vw, 50vw"
+            />
+          </div>
+          <div className="ambiance-copy">
+            <p className="eyebrow">Le résultat</p>
+            <h2>Un intérieur propre, lumineux et agréable</h2>
+            <p>
+              Après chaque intervention, votre logement retrouve toute sa fraîcheur. Sols propres, surfaces dépoussiérées, pièces aérées — un résultat net, durable et immédiatement visible.
+            </p>
+            <Link className="btn btn-primary" href="/contact#devis">
+              Demander une intervention
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="trust-strip" id="avis" aria-label="Avis clients">
         <div>
