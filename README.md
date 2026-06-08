@@ -68,17 +68,17 @@ create table quote_requests (
 ```
 
 
-## LeanCTX
+## CrewAI
 
-Un helper d’installation LeanCTX est disponible dans `tools/lean-ctx` pour réduire les tokens et éviter les lectures répétées pendant les sessions agentiques.
+Un workspace CrewAI isolé est disponible dans `agents/crewai` pour préparer des workflows d’agents (revue de bugs, SEO, maintenance) sans mélanger les dépendances Python avec Next.js.
 
 ```bash
-npm run leanctx:install
-npm run leanctx:setup
-npm run leanctx:doctor
+npm run crewai:install
+npm run crewai:check
+npm run crewai:run
 ```
 
-> Note : `leanctx:install` utilise Homebrew, npm global ou Cargo selon ce qui est disponible sur la machine.
+> Note : CrewAI requiert Python `>=3.10` et `<3.14`; le workspace cible Python `3.13`.
 
 ## Commandes
 

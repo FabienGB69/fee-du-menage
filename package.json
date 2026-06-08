@@ -8,10 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "leanctx:install": "bash tools/lean-ctx/install.sh",
-    "leanctx:setup": "lean-ctx setup",
-    "leanctx:doctor": "lean-ctx doctor",
-    "leanctx:repo": "node -e \"console.log('https://github.com/yvgude/lean-ctx')\""
+    "crewai:install": "cd agents/crewai && uv sync --python 3.13",
+    "crewai:check": "cd agents/crewai && uv run python -c \"from importlib.metadata import version; print(version('crewai'))\"",
+    "crewai:run": "cd agents/crewai && uv run fee-du-menage-crew"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.102.0",
