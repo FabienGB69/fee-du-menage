@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { cookies } from 'next/headers'
+import { z } from 'zod'
 import { verifyToken } from '@/lib/admin/auth'
-import type { ChatRequestBody } from '@/lib/admin/types'
 
 async function isAuthorized(): Promise<boolean> {
   const adminPassword = process.env.ADMIN_PASSWORD
@@ -12,6 +12,18 @@ async function isAuthorized(): Promise<boolean> {
   if (!token) return false
   return verifyToken(token, adminPassword)
 }
+
+const chatSchema = z.object({
+  messages: z.array(
+    z.object({
+      role: z.enum(['user', 'assistant']),
+      content: z.string().max(100_000),
+    })
+  ).min(1).max(500),
+  model: z.string().min(1).max(100),
+  systemPrompt: z.string().max(20_000).optional(),
+  maxTokens: z.number().int().positive().max(16384).optional(),
+})
 
 export async function POST(req: NextRequest) {
   if (!(await isAuthorized())) {
@@ -23,20 +35,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'API not configured' }, { status: 500 })
   }
 
-  let body: ChatRequestBody
-
+  let raw: unknown
   try {
-    body = await req.json()
+    raw = await req.json()
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  const { messages, model, systemPrompt } = body
-  const maxTokens = Math.min(body.maxTokens ?? 8192, 16384)
-
-  if (!Array.isArray(messages) || typeof model !== 'string' || !model) {
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+  const parsed = chatSchema.safeParse(raw)
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Invalid request', details: parsed.error.flatten() }, { status: 400 })
   }
+
+  const { messages, model, systemPrompt } = parsed.data
+  const maxTokens = Math.min(parsed.data.maxTokens ?? 8192, 16384)
 
   const anthropic = new Anthropic({ apiKey })
   const encoder = new TextEncoder()

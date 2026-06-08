@@ -1,7 +1,27 @@
+import { z } from 'zod'
 import type { Session } from './types'
 import { DEFAULT_MODEL } from './models'
 
 const STORAGE_KEY = 'admin_sessions'
+
+const chatMessageSchema = z.object({
+  role: z.enum(['user', 'assistant']),
+  content: z.string(),
+})
+
+const sessionSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  model: z.string(),
+  agent: z.string().nullable(),
+  activeSkills: z.array(z.string()),
+  messages: z.array(chatMessageSchema),
+  tokenUsage: z.object({ input: z.number(), output: z.number() }),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+})
+
+const sessionsSchema = z.array(sessionSchema)
 
 export function createSession(partial?: Partial<Session>): Session {
   const now = new Date().toISOString()
@@ -22,7 +42,9 @@ export function createSession(partial?: Partial<Session>): Session {
 export function loadSessions(): Session[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : []
+    if (!raw) return []
+    const parsed = sessionsSchema.safeParse(JSON.parse(raw))
+    return parsed.success ? parsed.data : []
   } catch {
     return []
   }
