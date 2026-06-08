@@ -923,3 +923,37 @@ a:focus-visible {
 .mentions-legales p, .mentions-legales li { color: var(--muted); line-height: 1.75; }
 .mentions-legales ul { padding-left: 1.25rem; margin: 8px 0; }
 .mentions-legales a { color: var(--violet); text-underline-offset: 3px; }
+
+/* ── Zone Map ───────────────────────────────────────────── */
+.zone-map-wrap {
+  height: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+.zone-map-placeholder {
+  height: 100%;
+  background: var(--surface);
+  border-radius: 20px;
+}
+
+/* ── Service Card CTA ───────────────────────────────────── */
+.service-card-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--violet);
+  border: 1.5px solid var(--violet);
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+}
+
+.service-card-cta:hover {
+  background: var(--violet);
+  color: #fff;
+}

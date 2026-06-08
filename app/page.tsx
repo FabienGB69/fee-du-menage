@@ -5,6 +5,7 @@ import { Award, BadgePercent, FileCheck, MapPin, Star, ThumbsUp } from 'lucide-r
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { TrustSection } from '@/components/TrustSection';
+import { ZoneMap } from '@/components/ZoneMap';
 import { DjamilaPresentation } from '@/components/DjamilaPresentation';
 import { ProcessSteps } from '@/components/ProcessSteps';
 import { QuoteForm } from '@/components/QuoteForm';
@@ -221,6 +222,7 @@ export default function HomePage() {
             Vérifier ma disponibilité
           </a>
         </div>
+        <ZoneMap />
       </section>
 
       <section className="quote section-shell" id="devis">
