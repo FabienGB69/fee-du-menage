@@ -4,17 +4,17 @@ import { siteConfig } from './site';
 
 export async function saveQuoteToSupabase(payload: QuotePayload) {
   const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseServiceRoleKey) {
+  if (!supabaseUrl || !supabaseAnonKey) {
     return { configured: false, saved: false } as const;
   }
 
   const response = await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/quote_requests`, {
     method: 'POST',
     headers: {
-      apikey: supabaseServiceRoleKey,
-      Authorization: `Bearer ${supabaseServiceRoleKey}`,
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`,
       'Content-Type': 'application/json',
       Prefer: 'return=minimal'
     },
@@ -33,51 +33,36 @@ export async function saveQuoteToSupabase(payload: QuotePayload) {
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`Supabase insert failed: ${response.status} ${errorBody}`);
+    console.error(`Supabase insert failed: ${response.status}`, errorBody);
+    throw new Error('Supabase insert failed');
   }
 
   return { configured: true, saved: true } as const;
+}
+
+function sanitizeHeader(value: string): string {
+  return value.replace(/[\r\n\x00]/g, '');
 }
 
 export async function sendQuoteEmail(payload: QuotePayload) {
   const resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey) {
-    throw new Error('RESEND_API_KEY is required to send quote emails.');
+    return { configured: false, sent: false } as const;
   }
 
   const resend = new Resend(resendApiKey);
   const { error } = await resend.emails.send({
     from: process.env.RESEND_FROM || 'Fée du Ménage <devis@fee-du-menage.fr>',
     to: siteConfig.email,
-    replyTo: payload.email,
-    subject: `Demande de devis - ${payload.nom}`,
+    replyTo: sanitizeHeader(payload.email),
+    subject: `Demande de devis - ${sanitizeHeader(payload.nom)}`,
     text: formatQuoteEmail(payload)
   });
 
   if (error) {
-    throw new Error(`Resend email failed: ${error.message}`);
-    return { configured: false, sent: false } as const;
-  }
-
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM || 'Fée du Ménage <devis@fee-du-menage.fr>',
-      to: [siteConfig.email],
-      reply_to: payload.email,
-      subject: `Demande de devis - ${payload.nom}`,
-      text: formatQuoteEmail(payload)
-    })
-  });
-
-  if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Resend email failed: ${response.status} ${errorBody}`);
+    console.error('Resend email failed:', error.message);
+    throw new Error('Email send failed');
   }
 
   return { configured: true, sent: true } as const;

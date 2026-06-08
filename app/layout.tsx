@@ -1,8 +1,7 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp';
-import { Analytics } from '@vercel/analytics/next';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import './globals.css';
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Fée du Ménage'
   },
   description:
-    "Fée du Ménage, aide ménagère à Lyon : ménage régulier, grand nettoyage, vitres, déménagement et nettoyage Airbnb. 106 avis Wecasa, note 5/5, crédit d'impôt 50 %.",
+    "Fée du Ménage, aide ménagère à Lyon : ménage régulier, grand nettoyage, vitres, déménagement et nettoyage Airbnb. 106 avis Wecasa, note 5/5, crédit d’impôt 50 %.",
   keywords: [
     'femme de ménage Lyon',
     'aide ménagère Lyon',
@@ -28,13 +27,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Fée du Ménage | Votre aide ménagère de confiance à Lyon',
-    description: "Ménage à domicile à Lyon dans un rayon de 8 km autour du 69009. Devis gratuit et crédit d'impôt 50 %.",
+    description: "Ménage à domicile à Lyon dans un rayon de 8 km autour du 69009. Devis gratuit et crédit d’impôt 50 %.",
     locale: 'fr_FR',
     type: 'website'
   },
   icons: {
     icon: '/assets/logo-fee-du-menage.svg'
   }
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -45,8 +49,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <main>{children}</main>
         <FloatingWhatsApp />
         <Footer />
-        <Footer />
-        <Analytics />
       </body>
     </html>
   );
