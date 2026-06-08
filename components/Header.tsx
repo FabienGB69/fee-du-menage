@@ -41,7 +41,7 @@ export function Header() {
     <header className="site-header" id="top">
       <nav className="nav" aria-label="Navigation principale">
         <Link className="brand" href="/" aria-label="Accueil Fée du Ménage">
-          <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage" width={46} height={46} priority />
+          <Image src="/images/logo-fee-du-menage-header-transparent.png" alt="Logo Fée du Ménage" width={42} height={46} priority />
           <span>{siteConfig.name}</span>
         </Link>
         <div className="nav-links" aria-label="Liens rapides">

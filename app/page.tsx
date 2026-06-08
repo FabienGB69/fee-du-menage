@@ -22,7 +22,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
-    image: 'https://fee-du-menage.fr/assets/logo-fee-du-menage.svg',
+    image: 'https://fee-du-menage.fr/images/logo-fee-du-menage-transparent.png',
     telephone: '+33609896564',
     email: siteConfig.email,
     address: {
