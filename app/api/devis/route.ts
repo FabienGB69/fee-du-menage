@@ -22,10 +22,17 @@ export async function POST(request: Request) {
   }
 
   try {
-    await Promise.all([saveQuoteToSupabase(payload), sendQuoteEmail(payload)]);
-    return NextResponse.json({ ok: true });
+    await sendQuoteEmail(payload);
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Erreur lors du traitement de la demande.' }, { status: 500 });
+    console.error('Email delivery failed:', error);
+    return NextResponse.json({ error: 'Erreur lors de l’envoi de la demande.' }, { status: 500 });
   }
+
+  try {
+    await saveQuoteToSupabase(payload);
+  } catch (error) {
+    console.error('Optional Supabase storage failed:', error);
+  }
+
+  return NextResponse.json({ ok: true });
 }

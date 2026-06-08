@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { cookies } from 'next/headers'
-import { hashPassword } from '@/lib/admin/auth'
+import { verifyToken } from '@/lib/admin/auth'
 import type { ChatRequestBody } from '@/lib/admin/types'
 
 async function isAuthorized(): Promise<boolean> {
@@ -10,8 +10,7 @@ async function isAuthorized(): Promise<boolean> {
   const cookieStore = await cookies()
   const token = cookieStore.get('admin_auth')?.value
   if (!token) return false
-  const expected = await hashPassword(adminPassword)
-  return token === expected
+  return verifyToken(token, adminPassword)
 }
 
 export async function POST(req: NextRequest) {
@@ -24,11 +23,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'API not configured' }, { status: 500 })
   }
 
-  const body: ChatRequestBody = await req.json()
+  let body: ChatRequestBody
+
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  }
+
   const { messages, model, systemPrompt } = body
   const maxTokens = Math.min(body.maxTokens ?? 8192, 16384)
 
-  if (!Array.isArray(messages) || !model) {
+  if (!Array.isArray(messages) || typeof model !== 'string' || !model) {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   }
 
