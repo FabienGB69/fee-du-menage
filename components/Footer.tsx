@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="footer">
       <div>
         <Link className="brand footer-brand" href="/">
-          <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage" width={40} height={40} />
+          <Image src="/images/logo-fee-du-menage-header-transparent.png" alt="Logo Fée du Ménage" width={37} height={40} />
           <span>{siteConfig.name}</span>
         </Link>
         <p>Femme de ménage à Lyon • Aide ménagère Lyon • Ménage à domicile Lyon • Nettoyage Airbnb Lyon</p>

@@ -12,12 +12,12 @@ export function BrandShowcase() {
       </div>
       <div className="brand-logo-gallery" aria-label="Logo Fée du Ménage">
         <div className="brand-logo-main">
-          <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={420} height={420} />
+          <Image src="/images/logo-fee-du-menage-transparent.png" alt="Logo Fée du Ménage - votre maison étincelante" width={420} height={457} />
         </div>
         <div className="brand-logo-thumbs" aria-hidden="true">
-          <Image src="/assets/logo-fee-du-menage.svg" alt="" width={92} height={92} />
-          <Image src="/assets/logo-fee-du-menage.svg" alt="" width={118} height={118} />
-          <Image src="/assets/logo-fee-du-menage.svg" alt="" width={92} height={92} />
+          <Image src="/images/logo-fee-du-menage-header-transparent.png" alt="" width={84} height={92} />
+          <Image src="/images/logo-fee-du-menage-header-transparent.png" alt="" width={108} height={118} />
+          <Image src="/images/logo-fee-du-menage-header-transparent.png" alt="" width={84} height={92} />
         </div>
       </div>
     </section>
