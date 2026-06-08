@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --blue: #1D8CE0;
-  --violet: #7D2AE8;
-  --purple: #8f4bc6;
-  --pink: #FF4DB8;
-  --ink: #1F2937;
-:root {
   --blue: #27aee8;
   --violet: #6d4cf6;
   --purple: #8f4bc6;
@@ -20,7 +14,6 @@
   --white: #ffffff;
   --shadow: 0 24px 70px rgba(73, 48, 131, 0.14);
   --gradient: linear-gradient(135deg, var(--blue), var(--violet) 52%, var(--pink));
-  font-family: var(--font-inter, Inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -38,7 +31,6 @@ body {
   background:
     radial-gradient(circle at top left, rgba(39, 174, 232, 0.12), transparent 33rem),
     radial-gradient(circle at 92% 8%, rgba(235, 106, 167, 0.14), transparent 28rem),
-    #FAFAFA;
     var(--white);
   line-height: 1.6;
 }
@@ -93,7 +85,6 @@ img {
 }
 
 .brand span {
-  font-family: var(--font-playfair, Georgia), Georgia, serif;
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(1.25rem, 3vw, 1.6rem);
 }
@@ -389,7 +380,6 @@ h3 {
   gap: 18px;
 }
 
-.service-card,
 .why-list div {
   padding: 24px;
 }
@@ -520,8 +510,6 @@ address {
 }
 
 @media (min-width: 720px) {
-  .nav-links,
-  .nav-quote {
   .nav-links {
     display: flex;
   }
@@ -758,5 +746,96 @@ button:disabled {
 @media (min-width: 860px) {
   .brand-showcase {
     grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+/* ── Hero image ─────────────────────────────────────────────── */
+.hero-img-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  height: 200px;
+}
+
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Service cards with photos ──────────────────────────────── */
+.service-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-img {
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.service-card-body {
+  padding: 20px 22px 24px;
+  flex: 1;
+}
+
+.service-card-body span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--soft);
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+
+/* ── Ambiance section ───────────────────────────────────────── */
+.ambiance-inner {
+  display: grid;
+  gap: 36px;
+  align-items: center;
+}
+
+.ambiance-photo-wrap {
+  position: relative;
+  height: 280px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.ambiance-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.ambiance-copy h2 {
+  margin-bottom: 0;
+}
+
+.ambiance-copy p {
+  color: var(--muted);
+}
+
+@media (min-width: 860px) {
+  .ambiance-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ambiance-photo-wrap {
+    height: 400px;
+  }
+}
+
+@media (min-width: 980px) {
+  .service-card-img {
+    height: 190px;
   }
 }
