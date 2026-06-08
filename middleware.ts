@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { hashPassword } from '@/lib/admin/auth'
+import { verifyToken } from '@/lib/admin/auth'
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
@@ -14,8 +14,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(loginUrl)
     }
 
-    const expected = await hashPassword(adminPassword)
-    if (token !== expected) {
+    if (!(await verifyToken(token, adminPassword))) {
       const loginUrl = req.nextUrl.clone()
       loginUrl.pathname = '/admin/login'
       return NextResponse.redirect(loginUrl)

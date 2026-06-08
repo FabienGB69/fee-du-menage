@@ -11,11 +11,35 @@ import { loadPlugins, savePlugins, togglePlugin, resetPlugins } from '@/lib/admi
 import { getModelInfo, MODELS, resolveModel } from '@/lib/admin/models'
 
 // ── Minimal inline markdown renderer ──────────────────────────────────────────
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+function sanitizeUrl(value: string): string {
+  try {
+    const url = new URL(value, window.location.origin)
+    if (url.protocol === 'http:' || url.protocol === 'https:' || url.protocol === 'mailto:') {
+      return escapeHtml(url.href)
+    }
+  } catch {
+    // Fall through to a harmless anchor.
+  }
+
+  return '#'
+}
+
 function renderMd(text: string): string {
-  return text
+  return escapeHtml(text)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => (
+      `<a href="${sanitizeUrl(href)}" target="_blank" rel="noopener noreferrer">${label}</a>`
+    ))
     .replace(/\n/g, '<br/>')
 }
 
