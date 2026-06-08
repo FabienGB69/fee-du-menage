@@ -1,21 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { cookies } from 'next/headers'
-import { createHash } from 'crypto'
+import { hashPassword } from '@/lib/admin/auth'
 import type { ChatRequestBody } from '@/lib/admin/types'
-
-const SALT = 'admin_salt_v1'
-
-function hashPassword(pw: string): string {
-  return createHash('sha256').update(pw + SALT).digest('hex')
-}
 
 async function isAuthorized(): Promise<boolean> {
   const adminPassword = process.env.ADMIN_PASSWORD
   if (!adminPassword) return false
   const cookieStore = await cookies()
   const token = cookieStore.get('admin_auth')?.value
-  return token === hashPassword(adminPassword)
+  if (!token) return false
+  const expected = await hashPassword(adminPassword)
+  return token === expected
 }
 
 export async function POST(req: NextRequest) {
@@ -25,14 +21,18 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
-    return NextResponse.json({ error: 'ANTHROPIC_API_KEY not configured' }, { status: 500 })
+    return NextResponse.json({ error: 'API not configured' }, { status: 500 })
   }
 
   const body: ChatRequestBody = await req.json()
-  const { messages, model, systemPrompt, maxTokens = 8192 } = body
+  const { messages, model, systemPrompt } = body
+  const maxTokens = Math.min(body.maxTokens ?? 8192, 16384)
+
+  if (!Array.isArray(messages) || !model) {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
+  }
 
   const anthropic = new Anthropic({ apiKey })
-
   const encoder = new TextEncoder()
 
   const stream = new ReadableStream({
@@ -59,12 +59,11 @@ export async function POST(req: NextRequest) {
           input_tokens: finalMsg.usage.input_tokens,
           output_tokens: finalMsg.usage.output_tokens,
         }
-        // sentinel: null byte separator then JSON usage
         controller.enqueue(encoder.encode('\x00' + JSON.stringify({ __usage: usage })))
         controller.close()
       } catch (err) {
-        const msg = err instanceof Error ? err.message : 'Stream error'
-        controller.enqueue(encoder.encode('\x00' + JSON.stringify({ __error: msg })))
+        console.error('[admin/chat]', err)
+        controller.enqueue(encoder.encode('\x00' + JSON.stringify({ __error: 'Stream error' })))
         controller.close()
       }
     },

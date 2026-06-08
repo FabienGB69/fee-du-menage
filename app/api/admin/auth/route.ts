@@ -1,31 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createHash } from 'crypto'
 import { cookies } from 'next/headers'
-
-const SALT = 'admin_salt_v1'
-
-export function hashPassword(pw: string): string {
-  return createHash('sha256').update(pw + SALT).digest('hex')
-}
+import { hashPassword } from '@/lib/admin/auth'
 
 export async function POST(req: NextRequest) {
   const { password } = await req.json()
   const adminPassword = process.env.ADMIN_PASSWORD
 
   if (!adminPassword) {
-    return NextResponse.json({ error: 'ADMIN_PASSWORD not configured' }, { status: 500 })
+    return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
   }
 
-  if (!password || hashPassword(password) !== hashPassword(adminPassword)) {
+  if (!password) {
     return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
   }
 
+  const [inputHash, expectedHash] = await Promise.all([
+    hashPassword(password),
+    hashPassword(adminPassword),
+  ])
+
+  if (inputHash !== expectedHash) {
+    return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
+  }
+
+  const token = await hashPassword(adminPassword)
   const cookieStore = await cookies()
-  cookieStore.set('admin_auth', hashPassword(adminPassword), {
+  cookieStore.set('admin_auth', token, {
     httpOnly: true,
     sameSite: 'strict',
+    secure: process.env.NODE_ENV === 'production',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    maxAge: 60 * 60 * 24 * 7,
   })
 
   return NextResponse.json({ ok: true })
