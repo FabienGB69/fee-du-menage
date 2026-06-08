@@ -1,0 +1,63 @@
+import { Resend } from 'resend';
+import { formatQuoteEmail, type QuotePayload } from './devis';
+import { siteConfig } from './site';
+
+export async function saveQuoteToSupabase(payload: QuotePayload) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    return { configured: false, saved: false } as const;
+  }
+
+  const response = await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/quote_requests`, {
+    method: 'POST',
+    headers: {
+      apikey: supabaseServiceRoleKey,
+      Authorization: `Bearer ${supabaseServiceRoleKey}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({
+      nom: payload.nom,
+      telephone: payload.telephone,
+      email: payload.email,
+      adresse: payload.adresse,
+      type_prestation: payload.typePrestation,
+      surface_logement: payload.surfaceLogement || null,
+      frequence_souhaitee: payload.frequenceSouhaitee || null,
+      message: payload.message || null,
+      source: 'site-web'
+    })
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Supabase insert failed: ${response.status} ${errorBody}`);
+  }
+
+  return { configured: true, saved: true } as const;
+}
+
+export async function sendQuoteEmail(payload: QuotePayload) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+
+  if (!resendApiKey) {
+    throw new Error('RESEND_API_KEY is required to send quote emails.');
+  }
+
+  const resend = new Resend(resendApiKey);
+  const { error } = await resend.emails.send({
+    from: process.env.RESEND_FROM || 'Fée du Ménage <devis@fee-du-menage.fr>',
+    to: siteConfig.email,
+    replyTo: payload.email,
+    subject: `Demande de devis - ${payload.nom}`,
+    text: formatQuoteEmail(payload)
+  });
+
+  if (error) {
+    throw new Error(`Resend email failed: ${error.message}`);
+  }
+
+  return { configured: true, sent: true } as const;
+}
