@@ -17,18 +17,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Champs obligatoires manquants.' }, { status: 400 });
   }
 
-  try {
-    const [supabase, email] = await Promise.all([saveQuoteToSupabase(payload), sendQuoteEmail(payload)]);
+  if (payload._honeypot) {
+    return NextResponse.json({ ok: true });
+  }
 
-    return NextResponse.json({
-      ok: true,
-      supabase,
-      email,
-      message: email.sent ? 'Demande envoyée à Djamila par email.' : 'Demande reçue.'
-      message: email.configured
-        ? 'Demande envoyée à Djamila.'
-        : 'Demande reçue. Configurez RESEND_API_KEY pour activer l’email automatique.'
-    });
+  try {
+    await Promise.all([saveQuoteToSupabase(payload), sendQuoteEmail(payload)]);
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Erreur lors du traitement de la demande.' }, { status: 500 });
