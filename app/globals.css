@@ -670,3 +670,74 @@ button:disabled {
 .floating-whatsapp strong {
   line-height: 1;
 }
+
+.hero-logo-wrap {
+  width: min(260px, 72vw);
+  margin: 0 auto 18px;
+  padding: 10px;
+  border-radius: 32px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.98), rgba(248, 246, 255, 0.9));
+  box-shadow: 0 18px 46px rgba(125, 42, 232, 0.16);
+}
+
+.hero-logo-wrap img {
+  width: 100%;
+  height: auto;
+}
+
+.brand-showcase {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+  padding: 38px 0 54px;
+}
+
+.brand-showcase-copy {
+  max-width: 620px;
+}
+
+.brand-showcase-copy p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.brand-logo-gallery {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.brand-logo-main {
+  width: min(420px, 86vw);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.brand-logo-main img,
+.brand-logo-thumbs img {
+  width: 100%;
+  height: auto;
+}
+
+.brand-logo-thumbs {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.brand-logo-thumbs img {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 28px rgba(73, 48, 131, 0.12);
+}
+
+@media (min-width: 860px) {
+  .brand-showcase {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}

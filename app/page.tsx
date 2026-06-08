@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { BrandShowcase } from '@/components/BrandShowcase';
 import Link from 'next/link';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -66,6 +69,8 @@ export default function HomePage() {
           </div>
         </div>
         <aside className="hero-card" aria-label="Coordonnées Fée du Ménage">
+          <div className="hero-logo-wrap">
+            <Image src="/assets/logo-fee-du-menage.svg" alt="Logo Fée du Ménage - votre maison étincelante" width={260} height={260} priority />
           <div className="sparkle" aria-hidden="true">
             ✦
           </div>
@@ -84,6 +89,8 @@ export default function HomePage() {
           </ul>
         </aside>
       </section>
+
+      <BrandShowcase />
 
       <section className="trust-strip" id="avis" aria-label="Avis clients">
         <div>
