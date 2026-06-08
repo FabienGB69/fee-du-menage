@@ -11,6 +11,11 @@ export function Footer() {
           <span>{siteConfig.name}</span>
         </Link>
         <p>Femme de ménage à Lyon • Aide ménagère Lyon • Ménage à domicile Lyon • Nettoyage Airbnb Lyon</p>
+        <div className="footer-legal">
+          <Link href="/mentions-legales">Mentions légales</Link>
+          <Link href="/donnees-personnelles">Données personnelles</Link>
+          <Link href="/cookies">Gestion des cookies</Link>
+        </div>
       </div>
       <address>
         {siteConfig.address}
