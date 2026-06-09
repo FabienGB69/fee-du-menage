@@ -6,7 +6,7 @@ import { createSession, saveSession, loadSessions } from '@/lib/admin/sessions'
 import { COMMANDS, parseCommand, findCommand } from '@/lib/admin/commands'
 import { AGENTS, getAgent } from '@/lib/admin/agents'
 import { SKILLS, buildSkillSystemPrompt } from '@/lib/admin/skills'
-import { loadMemories, saveMemories } from '@/lib/admin/memory'
+import { loadMemories, saveMemories, injectMemories } from '@/lib/admin/memory'
 import { loadPlugins, savePlugins, togglePlugin, resetPlugins } from '@/lib/admin/plugins'
 import { getModelInfo, MODELS, resolveModel } from '@/lib/admin/models'
 
@@ -180,11 +180,15 @@ export default function ChatInterface() {
     const abort = new AbortController()
     abortRef.current = abort
 
+    const messagesWithMem = session.activeSkills.includes('claude-mem')
+      ? injectMemories(newMessages, memories)
+      : newMessages
+
     try {
       const res = await fetch('/api/admin/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages, model: session.model, systemPrompt }),
+        body: JSON.stringify({ messages: messagesWithMem, model: session.model, systemPrompt }),
         signal: abort.signal,
       })
 
