@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { services } from '@/lib/site';
 
 export function ServiceCards({ detailed = false }: { detailed?: boolean }) {
@@ -22,6 +23,9 @@ export function ServiceCards({ detailed = false }: { detailed?: boolean }) {
             <span aria-hidden="true">{service.icon}</span>
             <h3>{service.title}</h3>
             <p>{detailed ? service.detail : service.description}</p>
+            <Link className="service-card-cta" href="/contact#devis">
+              Demander un devis
+            </Link>
           </div>
         </article>
       ))}
